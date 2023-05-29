@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.forms import DecimalField, CharField
 
 from django.urls import reverse
 
@@ -29,12 +30,12 @@ class Cook(AbstractUser):
 
 
 class Dish(models.Model):
-    name = models.CharField(max_length=255)
+    name = CharField(max_length=255)
     description = models.TextField(
         max_length=1000,
         help_text="Select a description for this dish..."
     )
-    price = models.DecimalField(max_digits=7, decimal_places=2)
+    price = DecimalField(max_digits=7, decimal_places=2)
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     cooks = models.ManyToManyField(Cook, related_name="dishes")
 
