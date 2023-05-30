@@ -7,11 +7,6 @@ from restaurant_service.models import Dish, Cook
 
 
 class DishForm(forms.ModelForm):
-    drivers = forms.ModelMultipleChoiceField(
-        queryset=get_user_model().objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-    )
-
     class Meta:
         model = Dish
         fields = "__all__"

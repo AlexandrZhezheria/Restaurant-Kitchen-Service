@@ -35,8 +35,8 @@ class Dish(models.Model):
         max_length=1000,
         help_text="Select a description for this dish..."
     )
-    price = models.DecimalField(max_digits=7, decimal_places=2)
-    dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)  # Добавлено значение по умолчанию
+    dish_type = models.ForeignKey('restaurant_service.DishType', on_delete=models.CASCADE)
     cooks = models.ManyToManyField(Cook, related_name="dishes")
 
     def __str__(self):
