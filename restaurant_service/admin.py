@@ -5,9 +5,9 @@ from .models import Cook, Dish, DishType
 
 @admin.register(Cook)
 class CookAdmin(UserAdmin):
-    list_display = UserAdmin.list_display + ("license_number",)
+    list_display = UserAdmin.list_display + ("years_of_experience",)
     fieldsets = UserAdmin.fieldsets + (
-        (("Additional info", {"fields": ("license_number",)}),)
+        (("Additional info", {"fields": ("years_of_experience",)}),)
     )
     add_fieldsets = UserAdmin.add_fieldsets + (
         (
@@ -17,7 +17,7 @@ class CookAdmin(UserAdmin):
                     "fields": (
                         "first_name",
                         "last_name",
-                        "license_number",
+                        "years_of_experience",
                     )
                 },
             ),

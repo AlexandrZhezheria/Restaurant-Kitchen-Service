@@ -6,14 +6,14 @@ from django.core.exceptions import ValidationError
 from restaurant_service.models import Dish, Cook
 
 
-class CookForm(forms.ModelForm):
+class DishForm(forms.ModelForm):
     drivers = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
 
     class Meta:
-        model = Cook
+        model = Dish
         fields = "__all__"
 
 
@@ -26,11 +26,11 @@ class CookCreationForm(UserCreationForm):
             "last_name",
         )
 
-    def clean_years_of_experience(self):  # this logic is optional, but possible
+    def clean_years_of_experience(self):
         return validate_years_of_experience(self.cleaned_data["years_of_experience"])
 
 
-class CookYears_of_experienceUpdateForm(forms.ModelForm):
+class Cook_Years_of_experienceUpdateForm(forms.ModelForm):
     class Meta:
         model = Cook
         fields = ["years_of_experience"]
@@ -48,7 +48,7 @@ def validate_years_of_experience(
     return years_of_experience
 
 
-class DriversSearchForm(forms.Form):
+class CooksSearchForm(forms.Form):
     username = forms.CharField(
         max_length=255,
         required=False,
@@ -58,20 +58,20 @@ class DriversSearchForm(forms.Form):
     )
 
 
-class CooksSearchForm(forms.Form):
+class DishesSearchForm(forms.Form):
     model = forms.CharField(
         max_length=255,
         required=False,
         label="",
         widget=forms.TextInput(attrs={
-            "placeholder": "Search by model....."})
+            "placeholder": "Search by dishes....."})
     )
 
 
-class ManufacturersSearchForm(forms.Form):
+class DishTypesSearchForm(forms.Form):
     name = forms.CharField(
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by name......"})
+        widget=forms.TextInput(attrs={"placeholder": "Search by DishType......"})
     )

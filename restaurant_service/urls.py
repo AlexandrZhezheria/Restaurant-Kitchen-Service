@@ -24,22 +24,22 @@ urlpatterns = [
     path(
         "dishtypes/",
         DishTypeListView.as_view(),
-        name="dishType-list",
+        name="dish-type-list",
     ),
     path(
         "dishtypes/create/",
         DishTypeCreateView.as_view(),
-        name="dishType-create",
+        name="dish-type-create",
     ),
     path(
         "dishtypes/<int:pk>/update/",
         DishTypeUpdateView.as_view(),
-        name="dishType-update",
+        name="dish-type-update",
     ),
     path(
         "dishtypes/<int:pk>/delete/",
         DishTypeDeleteView.as_view(),
-        name="dishType-delete",
+        name="dish-type-delete",
     ),
     path(
         "dishes/",
