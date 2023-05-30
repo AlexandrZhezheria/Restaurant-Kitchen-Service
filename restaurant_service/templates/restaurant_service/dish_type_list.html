@@ -3,40 +3,39 @@
 
 {% block content %}
   <h1>
-    Manufacturer List
+    Dish Type List
     <a href="{% url 'restaurant_service:dish_type-create' %}" class="btn btn-primary link-to-page">
       Create
     </a>
   </h1>
    {% include "includes/search_form.html" %}
-  {% if manufacturer_list %}
+  {% if dish_type_list %}
     <table class="table">
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Country</th>
         <th>Update</th>
         <th>Delete</th>
       </tr>
-      {% for manufacturer in manufacturer_list %}
+      {% for dish_type in manufacturer_list %}
         <tr>
           <td>
-              {{ manufacturer.id }}
+              {{ dish_type.id }}
           </td>
           <td>
-              {{ manufacturer.name }}
+              {{ dish_type.name }}
           </td>
           <td>
-              {{ manufacturer.country }}
+              {{ dish_type.country }}
           </td>
           <td>
-              <a href="{% url 'restaurant_service:dish_type-update' pk=manufacturer.id %}">
+              <a href="{% url 'restaurant_service:dish_type-update' pk=dish_type.id %}">
                 Update
               </a>
             </td>
             <td>
               <a style="color: red"
-                href="{% url 'restaurant_service:dish_type-delete' pk=manufacturer.id %}">
+                href="{% url 'restaurant_service:dish_type-delete' pk=dish_type.id %}">
                 Delete
               </a>
             </td>
@@ -44,6 +43,6 @@
       {% endfor %}
     </table>
   {% else %}
-      <p>There are no manufacturers in the service.</p>
+      <p>There are no dish types in the service.</p>
   {% endif %}
 {% endblock %}

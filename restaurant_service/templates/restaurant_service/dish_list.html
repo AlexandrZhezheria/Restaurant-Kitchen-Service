@@ -3,7 +3,7 @@
 
 {% block content %}
   <h1>
-    Car list
+    Dish list
     <a href="{% url 'restaurant_service:dish-create' %}" class="btn btn-primary link-to-page">
       Create
     </a>
@@ -11,16 +11,16 @@
 
    {% include "includes/search_form.html" %}
 
-  {% if car_list %}
+  {% if dish_list %}
     <ul>
-      {% for car in car_list %}
+      {% for dish in dish_list %}
         <li>
-          <a href="{% url "restaurant_service:dish-detail" pk=car.id %} ">{{ car.id }}</a>
-          {{ car.model }} ({{ car.manufacturer.name }})
+          <a href="{% url "restaurant_service:dish-detail" pk=dish.id %}">{{ dish.id }}</a>
+          {{ dish.name }} ({{ dish.dish_type.name }})
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    <p>There are no cars in taxi</p>
+    <p>There are no dishes in the restaurant</p>
   {% endif %}
 {% endblock %}
