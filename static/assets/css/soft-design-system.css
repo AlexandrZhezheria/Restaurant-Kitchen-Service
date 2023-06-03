@@ -3523,21 +3523,30 @@ textarea.form-control-lg {
   color: #cb0c9f;
   background-color: #fff;
   border: 1px solid #dee2e6;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
-  @media (prefers-reduced-motion: reduce) {
-    .page-link {
-      transition: none; } }
-  .page-link:hover {
-    z-index: 2;
-    color: #830866;
-    background-color: #e9ecef;
-    border-color: #dee2e6; }
-  .page-link:focus {
-    z-index: 3;
-    color: #830866;
-    background-color: #e9ecef;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(203, 12, 159, 0.25); }
+  border-radius: 0; /* Додайте цей рядок */
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-link {
+    transition: none;
+  }
+}
+
+.page-link:hover {
+  z-index: 2;
+  color: #830866;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.page-link:focus {
+  z-index: 3;
+  color: #830866;
+  background-color: #e9ecef;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(203, 12, 159, 0.25);
+}
 
 .page-item:not(:first-child) .page-link {
   margin-left: -1px; }
