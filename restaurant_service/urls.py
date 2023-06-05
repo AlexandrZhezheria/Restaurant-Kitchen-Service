@@ -16,7 +16,7 @@ from .views import (
     DishTypeCreateView,
     DishTypeUpdateView,
     DishTypeDeleteView,
-    toggle_assign_to_dish,
+    ToggleAssignToDishView,
 )
 
 app_name = "restaurant_service"
@@ -70,7 +70,7 @@ urlpatterns = [
     ),
     path(
         "dishes/<int:pk>/toggle-assign/",
-        toggle_assign_to_dish,
+        ToggleAssignToDishView,
         name="toggle-dish-assign"
     ),
     path(
