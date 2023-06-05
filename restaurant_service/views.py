@@ -2,8 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.decorators.http import require_POST
 
 from .models import Cook, Dish, DishType
 from .forms import (
@@ -30,6 +31,17 @@ def index(request):
         "num_visits": num_visits + 1,
     }
     return render(request, "restaurant_service/index.html", context=context)
+
+
+class ToggleAssignToDishView(LoginRequiredMixin, View):
+    @require_POST
+    def post(self, request, pk):
+        cook = Cook.objects.get(id=request.user.id)
+        if Dish.objects.filter(id=pk, cooks=cook).exists():
+            cook.dishes.remove(pk)
+        else:
+            cook.dishes.add(pk)
+        return HttpResponseRedirect(reverse_lazy("restaurant_service:dish-detail", args=[pk]))
 
 
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
@@ -153,15 +165,3 @@ class CookLicenseUpdateView(LoginRequiredMixin, generic.UpdateView):
 class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
     success_url = reverse_lazy("")
-
-
-@login_required
-def toggle_assign_to_dish(request, pk):
-    cook = Cook.objects.get(id=request.user.id)
-    if (
-            Dish.objects.get(id=pk) in cook.dishes.all()
-    ):  # probably could check if dish exists
-        cook.dishes.remove(pk)
-    else:
-        cook.dishes.add(pk)
-    return HttpResponseRedirect(reverse_lazy("restaurant_service:dish-detail", args=[pk]))
