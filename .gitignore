@@ -3,3 +3,4 @@
 venv
 **__pycashe__
 db.sqlite3
+.env
