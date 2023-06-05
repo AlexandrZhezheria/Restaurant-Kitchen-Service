@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from typing import Union
 
 from restaurant_service.models import Dish, Cook
 
@@ -21,7 +22,7 @@ class CookCreationForm(UserCreationForm):
             "last_name",
         )
 
-    def clean_years_of_experience(self):
+    def clean_years_of_experience(self) -> Union[int, ValidationError]:
         return validate_years_of_experience(self.cleaned_data["years_of_experience"])
 
 
@@ -30,14 +31,14 @@ class Cook_Years_of_experienceUpdateForm(forms.ModelForm):
         model = Cook
         fields = ["years_of_experience"]
 
-    def clean_years_of_experience(self):
+    def clean_years_of_experience(self) -> Union[int, ValidationError]:
         return validate_years_of_experience(self.cleaned_data["years_of_experience"])
 
 
 def validate_years_of_experience(
-        years_of_experience,
-):  # regex validation is also possible here
-    if len(years_of_experience) == 0:
+    years_of_experience: int
+) -> Union[int, ValidationError]:
+    if years_of_experience == 0:
         raise ValidationError("years of experience cannot be 0")
 
     return years_of_experience
