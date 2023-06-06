@@ -69,9 +69,9 @@ urlpatterns = [
         name="dish-delete"
     ),
     path(
-        "dishes/<int:pk>/toggle-assign/",
-        ToggleAssignToDishView,
-        name="toggle-dish-assign"
+        'dishes/<int:pk>/toggle-assign/',
+        ToggleAssignToDishView.as_view(),
+        name='toggle-dish-assign'
     ),
     path(
         "cooks/",
