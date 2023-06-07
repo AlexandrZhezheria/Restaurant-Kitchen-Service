@@ -137,7 +137,7 @@ class CookListView(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Cook.objects.all()
+        queryset = Cook.objects.all().order_by('id')
         form = CooksSearchForm(self.request.GET)
         if form.is_valid():
             return queryset.filter(
