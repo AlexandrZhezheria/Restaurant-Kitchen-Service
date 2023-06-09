@@ -10,14 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+import dj_database_url
+
 from pathlib import Path
+
 
 from django.contrib import staticfiles
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Загрузка переменных окружения из файла .env
 env_path = os.path.join(BASE_DIR, "restaurant/.env")
@@ -95,11 +97,19 @@ WSGI_APPLICATION = "restaurant.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bgjdjmhz',
+        'USER': 'bgjdjmhz',
+        'PASSWORD': 'YcUNTqeHJPPYZg98F0MFNXemcOEV4Qql',
+        'HOST': 'snuffleupagus.db.elephantsql.com',
+        'PORT': '5432',
     }
 }
+
+# dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES["default"].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
