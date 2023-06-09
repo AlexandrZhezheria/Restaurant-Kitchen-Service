@@ -26,6 +26,11 @@ python manage.py runserver #start Django Server
 * Managing dish types & dishes & cooks from website
 * Powerful admin panel for advanced managin
 
+## The test user can be used:
+```
+login: admin111
+password: 1ghbkerb1
+```
 ## Demo
 
 ![Website Interface](login_img1.png)
